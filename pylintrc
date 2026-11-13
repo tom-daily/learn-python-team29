@@ -1,0 +1,22 @@
+[MAIN]
+init-hook='import sys; sys.path.append("./src/modules")'
+jobs=1
+
+[MESSAGES CONTROL]
+# The examples intentionally demonstrate older/alternative syntax for teaching purposes.
+disable=consider-using-f-string,
+        unspecified-encoding,
+        unnecessary-pass,
+        use-implicit-booleaness-not-comparison,
+        consider-using-with,
+        use-dict-literal,
+        redefined-outer-name,
+        no-else-break,
+        implicit-str-concat,
+        unrecognized-inline-option
+
+[FORMAT]
+max-line-length=100
+
+[BASIC]
+good-names=i,j,k,ex,Run,_
