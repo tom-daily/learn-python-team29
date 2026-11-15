@@ -156,3 +156,30 @@ def test_function_parameters_and_return_values():
 
     # Arguments can also be passed by keyword, in any order.
     assert rectangle_measurements(height=2, width=10) == (20, 24)
+
+
+def safe_divide(dividend, divisor):
+    """Divide two numbers after validating the input.
+
+    Functions should check their arguments and raise an exception with a clear message when the
+    input is invalid, instead of returning a misleading value.
+    """
+
+    if not isinstance(dividend, (int, float)) or not isinstance(divisor, (int, float)):
+        raise TypeError('Both arguments must be numbers')
+    if divisor == 0:
+        raise ValueError('Divisor must not be zero')
+    return dividend / divisor
+
+
+def test_function_input_validation():
+    """Input validation inside a function"""
+
+    assert safe_divide(10, 4) == 2.5
+    assert safe_divide(-9, 3) == -3
+
+    with pytest.raises(ValueError):
+        safe_divide(1, 0)
+
+    with pytest.raises(TypeError):
+        safe_divide('10', 2)
