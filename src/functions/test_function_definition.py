@@ -8,6 +8,8 @@ parenthesized list of formal parameters. The statements that form the body of th
 the next line, and must be indented.
 """
 
+import pytest
+
 
 def fibonacci_function_example(number_limit):
     """Generate a Fibonacci series up to number_limit.
@@ -121,3 +123,36 @@ def test_function_definition():
     greet_with_closure = compose_greet_func_with_closure('John')
 
     assert greet_with_closure() == 'Hello there, John!'
+
+
+def rectangle_measurements(width, height=None):
+    """Return the area and perimeter of a rectangle.
+
+    If height is omitted the rectangle is treated as a square. A function can return several
+    values at once by returning a tuple, which the caller can unpack into separate variables.
+    """
+
+    if height is None:
+        height = width
+
+    area = width * height
+    perimeter = 2 * (width + height)
+    return area, perimeter
+
+
+def test_function_parameters_and_return_values():
+    """Default parameters and multiple return values"""
+
+    # Both parameters supplied.
+    assert rectangle_measurements(3, 4) == (12, 14)
+
+    # height uses its default value, so the shape is a square.
+    assert rectangle_measurements(5) == (25, 20)
+
+    # The returned tuple can be unpacked into separate variables.
+    area, perimeter = rectangle_measurements(2, 6)
+    assert area == 12
+    assert perimeter == 16
+
+    # Arguments can also be passed by keyword, in any order.
+    assert rectangle_measurements(height=2, width=10) == (20, 24)
